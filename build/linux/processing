@@ -63,12 +63,12 @@ make_jdkcp() {
 
 
 # Get absolute path of directory where this script is located
-APPDIR=`readlink -f "$0"`
+APPDIR=`readlink -f -- "$0"`
 APPDIR=`dirname "$APPDIR"`
 log APPDIR
 
 # Try using a local JDK from the same directory as this script
-JDKDIR=`readlink -f "$APPDIR/java"`
+JDKDIR=`readlink -f -- "$APPDIR/java"`
 make_jdkcp "$JDKDIR"
 log SUCCESS
 
@@ -109,7 +109,7 @@ then
 else
   # Start Processing in the same directory as this script
   if [ "$1" ]; then
-    SKETCH=`readlink -f "$1"`
+    SKETCH=`readlink -f -- "$1"`
   else
     SKETCH=
   fi
