@@ -71,9 +71,8 @@ export CLASSPATH
 export PATH="$JDKDIR/bin":"$PATH"
 
 current_name=`basename $0`
-cmd_name='processing-java'
 
-if [ $current_name = $cmd_name ]
+if [ $current_name = 'processing-java' ]
 then
     java -Djna.nosys=true -Djava.ext.dirs="$APPDIR"/java/lib/ext -Xmx256m processing.mode.java.Commander "$@"
     exit $?
