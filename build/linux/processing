@@ -56,15 +56,9 @@ make_jdkcp "$JDKDIR"
 
 # Add all required JARs to CLASSPATH
 CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$JDKCP"
-for LIB in "$APPDIR"/lib/*.jar; do
-  CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$LIB"
-done
-for LIB in "$APPDIR"/core/library/*.jar; do
-  CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$LIB"
-done
-for LIB in "$APPDIR"/modes/java/mode/*.jar; do
-  CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$LIB"
-done
+CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$APPDIR/lib/*"
+CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$APPDIR/core/library/*"
+CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$APPDIR/modes/java/mode/*"
 export CLASSPATH
 
 # Make all JDK binaries available in PATH
