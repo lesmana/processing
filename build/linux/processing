@@ -74,8 +74,8 @@ current_name=`basename $0`
 
 if [ $current_name = 'processing-java' ]
 then
-    java -Djna.nosys=true -Djava.ext.dirs="$APPDIR"/java/lib/ext -Xmx256m processing.mode.java.Commander "$@"
-    exit $?
+  java -Djna.nosys=true -Djava.ext.dirs="$APPDIR"/java/lib/ext -Xmx256m processing.mode.java.Commander "$@"
+  exit $?
 else
   # Start Processing in the same directory as this script
   if [ "$1" ]; then
