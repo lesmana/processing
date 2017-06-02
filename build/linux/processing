@@ -12,50 +12,14 @@
 
 # Thanks to Ferdinand Kasper for this build script. [fry]
 
-
-# JARs required from JDK (anywhere in/below the JDK home directory)
-JDKLIBS="rt.jar"
-
-# Locates JDKLIBS in a directory and its subdirectories and saves their
-# absolute paths as list to JDKCP. Expects the directory as parameter $1.
-# Sets SUCCESS to 1 if all libraries were found, to 0 otherwise.
-make_jdkcp() {
-  # Back out of JRE directory if apparently located inside a JDK
-  if [ -f "$1/../bin/java" ]; then
-    DIR="$1/.."
-  else
-    DIR="$1"
-  fi
-
-  JDKCP=
-  SUCCESS=1
-
-  # Locate JDKLIBS
-  for L in $JDKLIBS; do
-    # Locate only the first library with a matching name
-    LIB=`find "$DIR" -name $L 2>/dev/null | head -n 1`
-
-    # Library found?
-    if [ -n "$LIB" ]; then
-      JDKCP="$JDKCP"${JDKCP:+:}"$LIB"
-    else
-      SUCCESS=0
-    fi
-  done
-
-}
-
-
 # Get absolute path of directory where this script is located
 APPDIR=`readlink -f -- "$0"`
 APPDIR=`dirname "$APPDIR"`
 
 # Try using a local JDK from the same directory as this script
 JDKDIR=`readlink -f -- "$APPDIR/java"`
-make_jdkcp "$JDKDIR"
 
 # Add all required JARs to CLASSPATH
-CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$JDKCP"
 CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$APPDIR/lib/*"
 CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$APPDIR/core/library/*"
 CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$APPDIR/modes/java/mode/*"
