@@ -16,23 +16,17 @@
 APPDIR=`readlink -f -- "$0"`
 APPDIR=`dirname "$APPDIR"`
 
-# Try using a local JDK from the same directory as this script
-JDKDIR=`readlink -f -- "$APPDIR/java"`
-
 # Add all required JARs to CLASSPATH
 CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$APPDIR/lib/*"
 CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$APPDIR/core/library/*"
 CLASSPATH="$CLASSPATH"${CLASSPATH:+:}"$APPDIR/modes/java/mode/*"
 export CLASSPATH
 
-# Make all JDK binaries available in PATH
-export PATH="$JDKDIR/bin":"$PATH"
-
 current_name=`basename $0`
 
 if [ $current_name = 'processing-java' ]
 then
-  java \
+  "$APPDIR"/java/bin/java \
     -Djna.nosys=true \
     -Djava.ext.dirs="$APPDIR"/java/lib/ext \
     -Xmx256m \
@@ -48,7 +42,7 @@ else
   fi
   cd "$APPDIR"
 
-  java \
+  "$APPDIR"/java/bin/java \
     -splash:lib/about-1x.png \
     -Djna.nosys=true \
     -Djava.ext.dirs="$APPDIR"/java/lib/ext \
