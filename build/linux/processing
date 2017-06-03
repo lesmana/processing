@@ -11,15 +11,15 @@
 # https://github.com/processing/processing/wiki/Supported-Platforms
 
 # Get absolute path of directory where this script is located
-APPDIR=$(dirname "$(readlink -f -- "$0")")
+APPDIR="$(dirname "$(readlink -f -- "$0")")"
 
 # Add all required JARs to CLASSPATH
 CLASSPATH="$APPDIR/lib/*:$APPDIR/core/library/*:$APPDIR/modes/java/mode/*"
 export CLASSPATH
 
-current_name=$(basename $0)
+current_name="$(basename "$0")"
 
-if [ $current_name = 'processing-java' ]
+if [ "$current_name" = 'processing-java' ]
 then
   "$APPDIR"/java/bin/java \
     -Djna.nosys=true \
