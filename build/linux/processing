@@ -27,7 +27,6 @@ then
     -Xmx256m \
     processing.mode.java.Commander \
     "$@"
-  exit $?
 else
   "$APPDIR"/java/bin/java \
     -splash:"$APPDIR"/lib/about-1x.png \
