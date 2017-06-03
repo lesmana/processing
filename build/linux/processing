@@ -10,8 +10,6 @@
 # This must be a Sun/Oracle JDK. For more details, see here:
 # https://github.com/processing/processing/wiki/Supported-Platforms
 
-# Thanks to Ferdinand Kasper for this build script. [fry]
-
 # Get absolute path of directory where this script is located
 APPDIR=`readlink -f -- "$0"`
 APPDIR=`dirname "$APPDIR"`
